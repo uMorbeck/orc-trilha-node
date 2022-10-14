@@ -1,4 +1,4 @@
-@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@200;400;600&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@200;300;400;500&display=swap");
 
 * {
   margin: 0;
@@ -23,6 +23,7 @@ header {
 
 header h1 {
   padding-bottom: 3rem;
+  font-weight: 500;
 }
 
 .inputs {
@@ -31,11 +32,12 @@ header h1 {
 
 input {
   margin: 0;
-  border: solid #E01F69;
+  border: solid #e01f69;
   border-radius: 30px 0 0 30px;
   width: 75%;
   padding: 0.6rem;
   font-size: 1rem;
+  font-weight: 400;
   outline: none;
   background-color: #212121;
   color: #ddd;
@@ -44,20 +46,21 @@ input {
 button {
   padding: 0.5rem;
   width: 25%;
-  background-color: #E01F69;
+  background-color: #e01f69;
   color: #ddd;
   text-align: center;
   font-size: 1.2rem;
+  font-weight: 400;
   cursor: pointer;
   border-radius: 0 30px 30px 0;
-  border:none;
+  border: none;
   outline: none;
   transition: all 0.3s ease-in-out;
 }
 
 button:hover {
   margin-left: 0.5rem;
-  background-color: #E043B8;
+  background-color: #e043b8;
   border-radius: 30px;
 }
 
@@ -72,7 +75,7 @@ ul {
 ul li {
   position: relative;
   padding: 0.7rem;
-  background-color: #404040;
+  background-color: #303030;
   text-decoration: none;
   border-radius: 30px;
   display: flex;
@@ -80,6 +83,7 @@ ul li {
   justify-content: space-between;
   flex-wrap: wrap;
   font-size: 1.3rem;
+  font-weight: 300;
   margin: 0.5rem;
   transition: all 0.3s ease-in-out;
 }
@@ -93,6 +97,7 @@ ul li span {
   color: #aaa;
   font-style: italic;
   font-size: 0.8rem;
+  font-weight: 200;
   padding-left: 1rem;
 }
 
@@ -100,10 +105,6 @@ ul li div {
   display: flex;
   align-items: center;
   flex-wrap: wrap;
-}
-
-ul li:nth-child(odd) {
-  background-color: #303030;
 }
 
 ul li:hover {
@@ -115,12 +116,12 @@ a.btnUpdate {
   margin: 0.1rem;
   text-decoration: none;
   color: #ddd;
-  transition: all .3s ease-in-out;
+  transition: all 0.3s ease-in-out;
 }
 
 a.btnUpdate:hover {
-  background: #E043B8;
-  border-radius: .9rem;
+  background: #e043b8;
+  border-radius: 0.9rem;
   color: #ddd;
 }
 
@@ -129,12 +130,12 @@ a.btnDelete {
   text-decoration: none;
   margin: 0.1rem;
   color: #ddd;
-  transition: all .3s ease-in-out;
+  transition: all 0.3s ease-in-out;
 }
 
 a.btnDelete:hover {
   background: #f44336;
-  border-radius: .9rem;
+  border-radius: 0.9rem;
   color: #ddd;
 }
 
@@ -209,6 +210,7 @@ div#btns a {
   text-align: center;
   background-color: #202024;
   font-size: 1.5rem;
+  border-radius: 30px;
 }
 
 div#btns a#btnNo {
@@ -232,4 +234,34 @@ div#btns a#btnYes {
 div#btns a#btnYes:hover {
   color: #ddd;
   background-color: #00aa2a;
+}
+
+.message {
+  padding: 1rem;
+  position: sticky;
+  top: 0;
+  z-index: 9999;
+  text-align: center;
+  font-size: 1.1rem;
+  font-weight: 500;
+  width: auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.message-danger {
+  background-color: #f44336;
+  color: #ddd;
+}
+
+.message-success {
+  background-color: #00aa2a;
+  color: #ddd;
+}
+
+span#close-message {
+  font-size: 2rem;
+  cursor: pointer;
+  padding-left: 2rem;
 }

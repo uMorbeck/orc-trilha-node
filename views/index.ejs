@@ -10,9 +10,16 @@
   </head>
   <body>
 
+    <% if (message != "") {%>
+    <section class="message message-<%= type %>">
+      <p><%= message%></p>
+      <span id="close-message"><i class="bi bi-x-lg"></i></span>
+    </section>
+    <% } %>
+
     <header>
       <% if (task == null) { %>
-        <h1>To Do List</h1>
+        <h1>Lista de Tarefas</h1>
         <form action="/create" method="post">
           <div class="inputs">
             <input
@@ -46,7 +53,7 @@
           <li>
             <div>
               <a href="/"><%= task.task %></a>
-              <span>Criado em:<%= task.date.toLocaleDateString("pt-BR") %></span>
+              <span>Criado <%= task.date.toLocaleDateString("pt-BR") %></span>
             </div>
             <div>
               <a class="btnUpdate" href="/search/<%= task._id %>/update"><i class="bi bi-pencil-square"></i></a>
