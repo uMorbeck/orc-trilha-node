@@ -1,0 +1,104 @@
+* {
+  margin: 0;
+  padding: 0;
+  font-family: Montserrat, sans-serif;
+}
+
+body {
+  background-color: #212121;
+  width: 100%;
+  height: 100%;
+  color: #ddd;
+}
+
+span#close-message {
+  font-size: 2rem;
+  cursor: pointer;
+  padding-left: 2rem;
+}
+
+.message-danger {
+  background-color: #f44336;
+  color: #ddd;
+}
+
+.message {
+  padding: 1rem;
+  position: sticky;
+  top: 0;
+  z-index: 9999;
+  text-align: center;
+  font-size: 1.1rem;
+  font-weight: 500;
+  width: auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+h1 {
+  padding-bottom: 1rem;
+  font-weight: 500;
+}
+
+.inputs {
+  display: flex;
+  flex-wrap: wrap;
+  background-color: #bb1b588a;
+  border-radius: 30px;
+  padding: 3rem;
+  margin-top: 5rem;
+  margin-left: 17rem;
+  margin-right: 17rem;
+  text-align: center;
+  align-items: center;
+  justify-content: center;
+}
+
+input {
+  margin: 0;
+  border: solid #e01f69;
+  border-radius: 30px;
+  width: 100%;
+  padding: 0.6rem;
+  margin: 1rem;
+  font-size: 1rem;
+  font-weight: 400;
+  outline: none;
+  background-color: #212121;
+  color: #ddd;
+  position: relative;
+}
+
+button {
+  padding: 0.5rem;
+  width: 25%;
+  margin-left: 37.5%;
+  margin-right: 37.5%;
+  margin-bottom: 2rem;
+  margin-top: 1rem;
+  background-color: #e01f69;
+  color: #ddd;
+  text-align: center;
+  font-size: 1.2rem;
+  font-weight: 400;
+  cursor: pointer;
+  border-radius: 30px;
+  border: none;
+  outline: none;
+  transition: all 0.3s ease-in-out;
+}
+
+button:hover {
+  background-color: #e043b8;
+}
+
+a {
+  text-decoration: none;
+  color: #ddd;
+  margin-top: 1rem;
+}
+
+a:hover {
+  color: #888;
+}

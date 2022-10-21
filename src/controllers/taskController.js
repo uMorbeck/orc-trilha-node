@@ -1,15 +1,20 @@
 const Task = require("../models/Task");
+const routes = require("express").Router();
 
 let message = "";
 let type = "";
 
-const getAllTasks = async (req, res) => {
+//getAllTasks
+routes.get("/:user", async (req, res) => {
   try {
     setTimeout(() => {
       message = "";
+      type = "";
     }, 2000);
 
-    const tasksList = await Task.find();
+    const user = req.params.user;
+
+    const tasksList = await Task.find({ owner: user });
 
     return res.render("index", {
       tasksList,
@@ -17,37 +22,58 @@ const getAllTasks = async (req, res) => {
       taskDelete: null,
       message,
       type,
+      user,
     });
   } catch (err) {
     res.status(500).send({ error: err.message });
   }
-};
+});
 
-const searchTask = async (req, res) => {
+//searchTask
+routes.get("/:user/search/:id/:method", async (req, res) => {
+  const user = req.params.user;
+
   try {
-    const tasksList = await Task.find();
+    const tasksList = await Task.find({ owner: user });
 
     if (req.params.method == "update") {
       const task = await Task.findOne({ _id: req.params.id });
-      res.render("index", { tasksList, task, taskDelete: null, message, type });
+      res.render("index", {
+        tasksList,
+        task,
+        taskDelete: null,
+        message,
+        type,
+        user,
+      });
     } else if (req.params.method == "delete") {
       const taskDelete = await Task.findOne({ _id: req.params.id });
-      res.render("index", { tasksList, task: null, taskDelete, message, type });
+      res.render("index", {
+        tasksList,
+        task: null,
+        taskDelete,
+        message,
+        type,
+        user,
+      });
     } else {
-      res.redirect("/");
+      res.redirect(`/todolist/${user}`);
     }
   } catch (err) {
     res.status(500).send({ error: err.message });
   }
-};
+});
 
-const createTask = async (req, res) => {
+//createTask
+routes.post("/:user/create", async (req, res) => {
   const task = req.body;
+  const user = req.params.user;
+  task.owner = user;
 
   if (!task.task) {
     message = "Insira um texto, antes de adicionar a tarefa";
     type = "danger";
-    return res.redirect("/");
+    return res.redirect(`/todolist/${user}`);
   }
 
   try {
@@ -55,13 +81,16 @@ const createTask = async (req, res) => {
     message = "Tarefa criada com sucesso";
     type = "success";
 
-    return res.redirect("/");
+    return res.redirect(`/todolist/${user}`);
   } catch (err) {
     res.status(500).send({ error: err.message });
   }
-};
+});
 
-const updateOneTask = async (req, res) => {
+//updateOneTask
+routes.post("/:user/update/:id", async (req, res) => {
+  const user = req.params.user;
+
   try {
     const task = req.body;
 
@@ -73,26 +102,32 @@ const updateOneTask = async (req, res) => {
     message = "Tarefa atualizada com sucesso";
     type = "success";
 
-    res.redirect("/");
+    res.redirect(`/todolist/${user}`);
   } catch (err) {
     res.status(500).send({ error: err.message });
   }
-};
+});
 
-const deleteOneTask = async (req, res) => {
+//deleteOneTask
+routes.get("/:user/deleteTask/:id", async (req, res) => {
+  const user = req.params.user;
+
   try {
     await Task.deleteOne({ _id: req.params.id });
 
     message = "Tarefa apagada com sucesso";
     type = "success";
 
-    res.redirect("/");
+    res.redirect(`/todolist/${user}`);
   } catch (err) {
     res.status(500).send({ error: err.message });
   }
-};
+});
 
-const taskCheck = async (req, res) => {
+//taskCheck
+routes.get("/:user/check/:id", async (req, res) => {
+  const user = req.params.user;
+
   try {
     const task = await Task.findOne({ _id: req.params.id });
 
@@ -100,17 +135,10 @@ const taskCheck = async (req, res) => {
 
     await Task.updateOne({ _id: req.params.id }, task);
 
-    res.redirect("/");
+    res.redirect(`/todolist/${user}`);
   } catch (err) {
     res.status(500).send({ error: err.message });
   }
-};
+});
 
-module.exports = {
-  getAllTasks,
-  searchTask,
-  createTask,
-  updateOneTask,
-  deleteOneTask,
-  taskCheck,
-};
+module.exports = (app) => app.use("/todolist", routes);
