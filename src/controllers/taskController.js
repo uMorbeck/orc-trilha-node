@@ -30,9 +30,11 @@ const searchTask = async (req, res) => {
     if (req.params.method == "update") {
       const task = await Task.findOne({ _id: req.params.id });
       res.render("index", { tasksList, task, taskDelete: null, message, type });
-    } else {
+    } else if (req.params.method == "delete") {
       const taskDelete = await Task.findOne({ _id: req.params.id });
       res.render("index", { tasksList, task: null, taskDelete, message, type });
+    } else {
+      res.redirect("/");
     }
   } catch (err) {
     res.status(500).send({ error: err.message });
