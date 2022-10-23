@@ -10,8 +10,8 @@
     <p>Deseja realmente apagar a tarefa: <%= taskDelete.task %></p>
 
     <div id="btns">
-      <a id="btnNo" href="/">Não</a>
-      <a id="btnYes" href="/deleteTask/<%= taskDelete._id %>">Sim</a>
+      <a id="btnNo" href="/todolist/<%= user %>">Não</a>
+      <a id="btnYes" href="/todolist/<%= user %>/deleteTask/<%= taskDelete._id %>">Sim</a>
     </div>
   </div>
 </section>

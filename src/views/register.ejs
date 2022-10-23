@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="/styleLogNReg.css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css">
+    <title>To Do List</title>
+  </head>
+  <body>
+
+    <% if (message != "") {%>
+      <%- include('./components/message', {message: message, type: type}) %>
+    <% } %>
+
+    <form action="/register" method="post">
+      <div class="inputs">
+            <h1>Cadastrar</h1>
+            <input name="name" id="name" type="text" placeholder="Nome">
+            <input name="email" id="email" type="email" placeholder="E-Mail">
+            <input name="password" id="password" type="password" placeholder="Senha">
+            <button type="submit">Cadastrar</button>
+            <a href="/">Já possuo uma conta</a>
+        </div>
+    </form>
+    <script src="/script.js"></script>
+  </body>
+</html>
